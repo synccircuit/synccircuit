@@ -1,0 +1,39 @@
+{
+  "name": "synccircuit-bot",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:clean": "del-cli dist/*",
+    "build:check": "npx tsc --noEmit",
+    "build:compile": "npx tsc --build",
+    "build": "npm run build:clean && npm run build:check && npm run build:compile",
+    "lint": "prettier --check . && oxlint",
+    "format": "prettier --write .",
+    "start": "npm run build && env-cmd node --enable-source-maps dist/index.js"
+  },
+  "author": "WoozyStudio <woozystudiocontact@gmail.com>",
+  "keywords": [],
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@discordjs/core": "2.0.1",
+    "@discordjs/rest": "2.4.3",
+    "colors": "1.4.0",
+    "discord-api-types": "0.37.119",
+    "discord.js": "14.18.0",
+    "dotenv": "16.4.7",
+    "env-cmd": "10.1.0",
+    "glob": "11.0.1",
+    "nodemon": "3.1.9",
+    "path": "0.12.7",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "cpy-cli": "5.0.0",
+    "del-cli": "6.0.0",
+    "prettier": "3.5.3",
+    "typescript": "5.8.2"
+  }
+}
