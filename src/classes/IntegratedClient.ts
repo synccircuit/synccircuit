@@ -16,6 +16,7 @@ export default class IntegratedClient extends Client implements Bot {
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.Guilds,
         GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildVoiceStates,
       ],
     });
 
