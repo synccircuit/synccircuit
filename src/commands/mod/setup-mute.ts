@@ -29,35 +29,21 @@ export default class SetupMute extends Command {
   override async execute(interaction: ChatInputCommandInteraction) {
     const role = interaction.options.getRole("role") as Role;
 
-    const data = await muteConfig.findOne({
-      GuildID: interaction.guild?.id,
-      RoleID: role.id,
-    });
-
-    if (data) {
-      await interaction.reply({
-        embeds: [
-          new EmbedBuilder()
-            .setColor("Yellow")
-            .setDescription(
-              `\`⚠️\` It seems that you have configured this module before.`
-            ),
-        ],
-      });
-    } else {
-      await muteConfig.create({
+    await muteConfig.findOneAndUpdate(
+      {
         GuildID: interaction.guild?.id,
-        RoleID: role.id,
-      });
+      },
+      { RoleID: role.id },
+      { new: true, upsert: true }
+    );
 
-      await interaction.reply({
-        embeds: [
-          new EmbedBuilder()
-            .setTitle("Muting System")
-            .setDescription("The mute system was successfully configured.")
-            .setColor("Blurple"),
-        ],
-      });
-    }
+    await interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Muting System")
+          .setDescription("The mute system was successfully configured.")
+          .setColor("Blurple"),
+      ],
+    });
   }
 }
