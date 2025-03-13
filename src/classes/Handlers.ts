@@ -5,6 +5,7 @@ import IntegratedClient from "./IntegratedClient.js";
 import Event from "./Event.js";
 import Command from "./Command.js";
 import type { ClientEvents } from "discord.js";
+import SubCommand from "./SubCommand.js";
 
 export default class Handlers implements Handler {
   client: IntegratedClient;
@@ -14,7 +15,7 @@ export default class Handlers implements Handler {
 
   async createEventHandler() {
     const files = (await glob(`dist/events/**/*.js`)).map((filePath: string) =>
-      path.resolve(filePath),
+      path.resolve(filePath)
     );
 
     files.map(async (file: string) => {
@@ -38,17 +39,22 @@ export default class Handlers implements Handler {
 
   async createCommandHandler() {
     const files = (await glob(`dist/commands/**/*.js`)).map(
-      (filePath: string) => path.resolve(filePath),
+      (filePath: string) => path.resolve(filePath)
     );
 
     files.map(async (file: string) => {
-      const command: Command = new (await import(file)).default(this.client);
+      const command: Command | SubCommand = new (await import(file)).default(
+        this.client
+      );
 
       if (!command.name)
         return (
           delete require.cache[require.resolve(file)] &&
           console.log(`${file.split("/").pop()} does not have a valid name.`)
         );
+
+      if (command instanceof SubCommand)
+        return this.client.subCommands.set(command.name, command);
 
       this.client.commands.set(command.name, command as Command);
 

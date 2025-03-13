@@ -22,8 +22,15 @@ export default class InteractionCreate extends Event {
         interaction.reply({ content: "outdated command", ephemeral: true }),
         this.client.commands.delete(interaction.commandName)
       );
+
     try {
-      return command.execute(interaction);
+      const subCommandGroup = interaction.options.getSubcommandGroup(false);
+      const subCommand = `${interaction.commandName}${subCommandGroup ? `.${subCommandGroup}` : ""}.${interaction.options.getSubcommand(false) || ""}`;
+
+      return (
+        this.client.subCommands.get(subCommand)?.execute(interaction) ||
+        command.execute(interaction)
+      );
     } catch (error) {
       console.log(error);
     }

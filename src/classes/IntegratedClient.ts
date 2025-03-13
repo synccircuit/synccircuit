@@ -4,10 +4,12 @@ import Handlers from "./Handlers.js";
 import Command from "./Command.js";
 import "colors";
 import { connect } from "mongoose";
+import SubCommand from "./SubCommand.js";
 
 export default class IntegratedClient extends Client implements Bot {
   importHandlers: Handlers;
   commands: Collection<string, Command>;
+  subCommands: Collection<string, SubCommand>;
 
   constructor() {
     super({
@@ -22,6 +24,7 @@ export default class IntegratedClient extends Client implements Bot {
 
     this.importHandlers = new Handlers(this);
     this.commands = new Collection();
+    this.subCommands = new Collection();
   }
 
   start(): void {
