@@ -1,11 +1,4 @@
-import {
-  ActivityType,
-  Collection,
-  Events,
-  PresenceUpdateStatus,
-  REST,
-  Routes,
-} from "discord.js";
+import { ActivityType, Collection, Events, REST, Routes } from "discord.js";
 import IntegratedClient from "../../classes/IntegratedClient";
 import Event from "../../classes/Event";
 import "colors";
@@ -29,17 +22,22 @@ export default class Ready extends Event {
       Routes.applicationGuildCommands(clientId, guildId),
       {
         body: commands,
-      },
+      }
     );
 
     console.log(
-      `Successfully loaded ${setCommands.length} application commands.`.red,
+      `Successfully loaded ${setCommands.length} application commands.`.red
     );
 
     console.log(`Logged as ${this.client.user?.tag}`.green);
     this.client.user?.setPresence({
-      activities: [{ name: `SyncCircuit Beta`, type: ActivityType.Custom }],
-      status: PresenceUpdateStatus.DoNotDisturb,
+      activities: [
+        {
+          name: `SyncCircuit Beta`,
+          url: "https://twitch.tv/discord",
+          type: ActivityType.Streaming,
+        },
+      ],
     });
   }
 
