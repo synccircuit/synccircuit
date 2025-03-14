@@ -77,7 +77,7 @@ export default class UserInfo extends Command {
           value: `- Joined: <t:${Math.floor((member?.joinedTimestamp as number) / 1000)}:f> (<t:${Math.floor((member?.joinedTimestamp as number) / 1000)}:R>)\n- Roles (${roleCount}):\n_${roleList}_`,
         }
       )
-      .setColor("DarkerGrey");
+      .setColor("Blurple");
 
     await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
   }

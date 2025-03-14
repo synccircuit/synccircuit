@@ -38,7 +38,7 @@ export default class ChannelInfo extends Command {
         name: "Channel info",
         value: `- Name: ${channel} \`${channelFetched.name}\`\n- ID: \`${channel.id}\`\n- Created: <t:${Math.floor((channel?.createdTimestamp as number) / 1000)}:f> (<t:${Math.floor((channel?.createdTimestamp as number) / 1000)}:R>)`,
       })
-      .setColor("DarkerGrey");
+      .setColor("Blurple");
 
     await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
   }

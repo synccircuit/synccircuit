@@ -26,7 +26,7 @@ export default class GuildInfo extends Command {
         name: "Server info",
         value: `- Name: \`${guild.name}\`\n- ID: \`${guild.id}\`\n- Created: <t:${Math.floor(guild.createdTimestamp / 1000)}:f> (<t:${Math.floor(guild.createdTimestamp / 1000)}:R>)\n- Icon: [${guild.icon}](${guild.iconURL({ size: 4096 })})\n- Members: \`${guild.memberCount}\``,
       })
-      .setColor("DarkerGrey");
+      .setColor("Blurple");
 
     await interaction.reply({ embeds: [embed] });
   }
