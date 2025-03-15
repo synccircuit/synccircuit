@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   EmbedBuilder,
   GuildMember,
+  MessageFlags,
   PermissionFlagsBits,
   User,
 } from "discord.js";
@@ -46,6 +47,7 @@ export default class UnMute extends Command {
               `\`⚠️\` It seems that you have not configured the module.`
             ),
         ],
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       try {
@@ -62,6 +64,7 @@ export default class UnMute extends Command {
             )
             .setColor("Blurple"),
         ],
+        flags: MessageFlags.Ephemeral,
       });
     }
   }

@@ -2,6 +2,7 @@ import {
   ApplicationCommandOptionType,
   ChatInputCommandInteraction,
   EmbedBuilder,
+  MessageFlags,
   PermissionFlagsBits,
   Role,
 } from "discord.js";
@@ -44,6 +45,7 @@ export default class SetupMute extends Command {
           .setDescription("The mute system was successfully configured.")
           .setColor("Blurple"),
       ],
+      flags: MessageFlags.Ephemeral,
     });
   }
 }

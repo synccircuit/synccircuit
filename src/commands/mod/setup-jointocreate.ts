@@ -3,6 +3,7 @@ import {
   ChannelType,
   ChatInputCommandInteraction,
   EmbedBuilder,
+  MessageFlags,
   PermissionFlagsBits,
   VoiceChannel,
 } from "discord.js";
@@ -60,6 +61,7 @@ export default class SetupJoinToCreate extends Command {
           )
           .setColor("Blurple"),
       ],
+      flags: MessageFlags.Ephemeral,
     });
   }
 }
