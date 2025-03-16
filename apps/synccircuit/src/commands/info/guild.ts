@@ -2,6 +2,7 @@ import {
   ChatInputCommandInteraction,
   EmbedBuilder,
   Guild,
+  MessageFlags,
   PermissionFlagsBits,
 } from "discord.js";
 import Command from "@/classes/Command";
@@ -29,6 +30,6 @@ export default class GuildInfo extends Command {
       })
       .setColor("Blurple");
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
   }
 }
