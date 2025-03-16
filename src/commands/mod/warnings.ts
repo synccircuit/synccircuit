@@ -3,8 +3,8 @@ import {
   ChatInputCommandInteraction,
   PermissionFlagsBits,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export default class Warnings extends Command {
   constructor(client: IntegratedClient) {

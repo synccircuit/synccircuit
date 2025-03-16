@@ -1,5 +1,5 @@
 import { Events } from "discord.js";
-import IntegratedClient from "../classes/IntegratedClient";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export type EventStructure = {
   client: IntegratedClient;

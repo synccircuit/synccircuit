@@ -6,9 +6,9 @@ import {
   PermissionFlagsBits,
   Role,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
-import muteConfig from "../../mongo/schemas/muteConfig";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
+import muteConfig from "@/mongo/schemas/muteConfig";
 
 export default class SetupMute extends Command {
   constructor(client: IntegratedClient) {
@@ -36,7 +36,7 @@ export default class SetupMute extends Command {
         GuildID: interaction.guild?.id,
       },
       { RoleID: role.id },
-      { new: true, upsert: true },
+      { new: true, upsert: true }
     );
 
     await interaction.reply({

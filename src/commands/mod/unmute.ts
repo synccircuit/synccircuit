@@ -7,9 +7,9 @@ import {
   PermissionFlagsBits,
   User,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
-import muteConfig from "../../mongo/schemas/muteConfig";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
+import muteConfig from "@/mongo/schemas/muteConfig";
 
 export default class UnMute extends Command {
   constructor(client: IntegratedClient) {
@@ -32,7 +32,7 @@ export default class UnMute extends Command {
   override async execute(interaction: ChatInputCommandInteraction) {
     const target = interaction.options.getUser("target") as User;
     const member = (await interaction.guild?.members.fetch(
-      target.id,
+      target.id
     )) as GuildMember;
 
     const data = await muteConfig.findOne({
@@ -45,7 +45,7 @@ export default class UnMute extends Command {
           new EmbedBuilder()
             .setColor("Yellow")
             .setDescription(
-              `\`⚠️\` It seems that you have not configured the module.`,
+              `\`⚠️\` It seems that you have not configured the module.`
             ),
         ],
         flags: MessageFlags.Ephemeral,
@@ -61,7 +61,7 @@ export default class UnMute extends Command {
         embeds: [
           new EmbedBuilder()
             .setDescription(
-              `${target} \`${target.id}\` was successfully unmuted.`,
+              `${target} \`${target.id}\` was successfully unmuted.`
             )
             .setColor("Blurple"),
         ],

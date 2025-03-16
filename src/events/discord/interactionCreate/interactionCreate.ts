@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, Events } from "discord.js";
-import Event from "../../../classes/Event";
-import Command from "../../../classes/Command";
-import IntegratedClient from "../../../classes/IntegratedClient";
+import Event from "@/classes/Event";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export default class InteractionCreate extends Event {
   constructor(client: IntegratedClient) {

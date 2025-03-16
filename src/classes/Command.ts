@@ -4,7 +4,7 @@ import type { CacheType } from "discord.js";
 import type {
   CommandManager,
   CommandStructure,
-} from "../types/CommandStructs.js";
+} from "@/types/CommandStructs.js";
 
 export default class Command implements CommandStructure {
   client: IntegratedClient;

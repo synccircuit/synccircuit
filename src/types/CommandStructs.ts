@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction } from "discord.js";
-import IntegratedClient from "../classes/IntegratedClient";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export type CommandStructure = {
   client: IntegratedClient;

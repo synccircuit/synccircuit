@@ -1,7 +1,7 @@
 import { ChannelType, Events, VoiceState } from "discord.js";
-import Event from "../../../classes/Event";
-import IntegratedClient from "../../../classes/IntegratedClient";
-import joinToCreate from "../../../mongo/schemas/joinToCreate";
+import Event from "@/classes/Event";
+import IntegratedClient from "@/classes/IntegratedClient";
+import joinToCreate from "@/mongo/schemas/joinToCreate";
 
 export default class VoiceStateUpdate extends Event {
   constructor(client: IntegratedClient) {
@@ -29,7 +29,7 @@ export default class VoiceStateUpdate extends Event {
           await createChannel.delete();
           this.client.removeListener(
             Events.VoiceStateUpdate,
-            voiceStateUpdateListener,
+            voiceStateUpdateListener
           );
         }
       };

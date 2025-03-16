@@ -7,9 +7,9 @@ import {
   PermissionFlagsBits,
   VoiceChannel,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
-import joinToCreate from "../../mongo/schemas/joinToCreate";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
+import joinToCreate from "@/mongo/schemas/joinToCreate";
 
 export default class SetupJoinToCreate extends Command {
   constructor(client: IntegratedClient) {
@@ -50,7 +50,7 @@ export default class SetupJoinToCreate extends Command {
         ChannelID: channel.id,
         ParentID: category?.id,
       },
-      { new: true, upsert: true },
+      { new: true, upsert: true }
     );
 
     await interaction.reply({
@@ -58,7 +58,7 @@ export default class SetupJoinToCreate extends Command {
         new EmbedBuilder()
           .setTitle("Join To Create System")
           .setDescription(
-            "The join to create system was successfully configured.",
+            "The join to create system was successfully configured."
           )
           .setColor("Blurple"),
       ],

@@ -4,9 +4,9 @@ import {
   MessageFlags,
   User,
 } from "discord.js";
-import IntegratedClient from "../../../../classes/IntegratedClient";
-import SubCommand from "../../../../classes/SubCommand";
-import warningSchema from "../../../../mongo/schemas/warningSchema";
+import IntegratedClient from "@/classes/IntegratedClient";
+import SubCommand from "@/classes/SubCommand";
+import warningSchema from "@/mongo/schemas/warningSchema";
 
 export default class Check extends SubCommand {
   constructor(client: IntegratedClient) {
@@ -45,7 +45,7 @@ export default class Check extends SubCommand {
       return;
     } else {
       const moderator = await interaction.guild?.members.fetch(
-        warning.ModeratorID as string,
+        warning.ModeratorID as string
       );
 
       const embed = new EmbedBuilder()
@@ -66,7 +66,7 @@ export default class Check extends SubCommand {
           {
             name: "Timestamp",
             value: `${warning.Timestamp}`,
-          },
+          }
         )
         .setTimestamp();
 

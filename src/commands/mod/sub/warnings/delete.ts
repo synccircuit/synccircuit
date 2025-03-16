@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, MessageFlags, User } from "discord.js";
-import IntegratedClient from "../../../../classes/IntegratedClient";
-import SubCommand from "../../../../classes/SubCommand";
-import warningSchema from "../../../../mongo/schemas/warningSchema";
+import IntegratedClient from "@/classes/IntegratedClient";
+import SubCommand from "@/classes/SubCommand";
+import warningSchema from "@/mongo/schemas/warningSchema";
 
 export default class Delete extends SubCommand {
   constructor(client: IntegratedClient) {

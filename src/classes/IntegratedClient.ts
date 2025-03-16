@@ -1,11 +1,11 @@
 import { Client, Collection, GatewayIntentBits } from "discord.js";
-import type { Bot } from "../types/Bot.js";
+import type { Bot } from "@/types/Bot.js";
 import Handlers from "./Handlers.js";
 import Command from "./Command.js";
 import "colors";
 import { connect } from "mongoose";
 import SubCommand from "./SubCommand.js";
-import { DISCORD_TOKEN, MONGODB_URL } from "../config/config.js";
+import { DISCORD_TOKEN, MONGODB_URL } from "@/config/config.js";
 
 export default class IntegratedClient extends Client implements Bot {
   importHandlers: Handlers;

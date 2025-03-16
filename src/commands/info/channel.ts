@@ -6,8 +6,8 @@ import {
   GuildChannel,
   PermissionFlagsBits,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export default class ChannelInfo extends Command {
   constructor(client: IntegratedClient) {
@@ -31,7 +31,7 @@ export default class ChannelInfo extends Command {
     const channel = interaction.options.getChannel("channel") as Channel;
 
     const channelFetched = (await interaction.guild?.channels.fetch(
-      channel.id,
+      channel.id
     )) as GuildChannel;
 
     const embed = new EmbedBuilder()

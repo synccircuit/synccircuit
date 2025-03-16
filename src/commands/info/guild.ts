@@ -4,8 +4,8 @@ import {
   Guild,
   PermissionFlagsBits,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
 
 export default class GuildInfo extends Command {
   constructor(client: IntegratedClient) {

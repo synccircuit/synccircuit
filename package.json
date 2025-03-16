@@ -6,7 +6,7 @@
   "scripts": {
     "build:clean": "del-cli dist/*",
     "build:check": "npx tsc --noEmit",
-    "build:compile": "npx tsc --build",
+    "build:compile": "npx tsc --build && tsc-alias -p tsconfig.json",
     "build": "npm run build:clean && npm run build:check && npm run build:compile",
     "lint": "prettier --check . && oxlint",
     "format": "prettier --write .",
@@ -36,6 +36,7 @@
     "cpy-cli": "5.0.0",
     "del-cli": "6.0.0",
     "prettier": "3.5.3",
+    "tsc-alias": "^1.8.11",
     "typescript": "5.8.2"
   }
 }

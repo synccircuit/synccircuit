@@ -1,9 +1,9 @@
 import { ActivityType, Collection, Events, REST, Routes } from "discord.js";
-import IntegratedClient from "../../classes/IntegratedClient";
-import Event from "../../classes/Event";
+import IntegratedClient from "@/classes/IntegratedClient";
+import Event from "@/classes/Event";
 import "colors";
-import Command from "../../classes/Command";
-import { APPLICATION_ID, DISCORD_TOKEN, GUILD_ID } from "../../config/config";
+import Command from "@/classes/Command";
+import { APPLICATION_ID, DISCORD_TOKEN, GUILD_ID } from "@/config/config";
 
 export default class Ready extends Event {
   constructor(client: IntegratedClient) {
@@ -17,35 +17,35 @@ export default class Ready extends Event {
     const rest = new REST().setToken(`${DISCORD_TOKEN}`);
 
     const enabledCommands: object[] = this.getJSON(
-      this.client.commands.filter((command) => command.enable),
+      this.client.commands.filter((command) => command.enable)
     );
 
     const setEnabledCommands: any = await rest.put(
       Routes.applicationCommands(`${APPLICATION_ID}`),
       {
         body: enabledCommands,
-      },
+      }
     );
 
     console.log(
       `Successfully loaded ${setEnabledCommands.length} application commands.`
-        .red,
+        .red
     );
 
     const developmentCommands: object[] = this.getJSON(
-      this.client.commands.filter((command) => !command.enable),
+      this.client.commands.filter((command) => !command.enable)
     );
 
     const setDevelopmentCommands: any = await rest.put(
       Routes.applicationGuildCommands(`${APPLICATION_ID}`, `${GUILD_ID}`),
       {
         body: developmentCommands,
-      },
+      }
     );
 
     console.log(
       `Successfully loaded ${setDevelopmentCommands.length} development commands.`
-        .yellow,
+        .yellow
     );
 
     console.log(`Logged as ${this.client.user?.tag}`.green);

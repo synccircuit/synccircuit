@@ -4,7 +4,7 @@ import type { CacheType } from "discord.js";
 import type {
   SubCommandManager,
   SubCommandStructure,
-} from "../types/SubCommandStructs.js";
+} from "@/types/SubCommandStructs.js";
 
 export default class SubCommand implements SubCommandStructure {
   client: IntegratedClient;

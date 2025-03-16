@@ -6,9 +6,9 @@ import {
   PermissionFlagsBits,
   User,
 } from "discord.js";
-import Command from "../../classes/Command";
-import IntegratedClient from "../../classes/IntegratedClient";
-import warningSchema from "../../mongo/schemas/warningSchema";
+import Command from "@/classes/Command";
+import IntegratedClient from "@/classes/IntegratedClient";
+import warningSchema from "@/mongo/schemas/warningSchema";
 
 export default class Warn extends Command {
   constructor(client: IntegratedClient) {
@@ -57,13 +57,13 @@ export default class Warn extends Command {
       }
 
       const member = interaction.guild?.members.cache.get(
-        target.id,
+        target.id
       ) as GuildMember;
 
       if (
         member &&
         member.roles.highest.comparePositionTo(
-          (interaction.member as GuildMember).roles.highest,
+          (interaction.member as GuildMember).roles.highest
         ) >= 0
       ) {
         await interaction.reply({
