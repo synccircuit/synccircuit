@@ -23,6 +23,7 @@ export default class UserInfo extends Command {
           required: false,
         },
       ],
+      enable: true,
     });
   }
 

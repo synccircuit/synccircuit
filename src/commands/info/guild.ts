@@ -14,6 +14,7 @@ export default class GuildInfo extends Command {
       description: "Server information.",
       default_member_permissions: PermissionFlagsBits.UseApplicationCommands,
       options: [],
+      enable: true,
     });
   }
 

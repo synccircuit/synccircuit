@@ -22,6 +22,7 @@ export default class RoleInfo extends Command {
           required: true,
         },
       ],
+      enable: true,
     });
   }
 

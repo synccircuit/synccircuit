@@ -23,6 +23,7 @@ export default class ChannelInfo extends Command {
           required: true,
         },
       ],
+      enable: true,
     });
   }
 

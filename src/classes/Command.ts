@@ -12,6 +12,7 @@ export default class Command implements CommandStructure {
   description: string;
   options: object;
   default_member_permissions: bigint;
+  enable: boolean;
 
   constructor(client: IntegratedClient, on: CommandManager) {
     this.client = client;
@@ -19,6 +20,7 @@ export default class Command implements CommandStructure {
     this.description = on.description;
     this.options = on.options;
     this.default_member_permissions = on.default_member_permissions;
+    this.enable = on.enable;
   }
 
   execute(_interaction: ChatInputCommandInteraction<CacheType>): void {}

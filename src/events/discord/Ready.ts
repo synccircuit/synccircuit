@@ -16,16 +16,36 @@ export default class Ready extends Event {
   override async execute() {
     const rest = new REST().setToken(`${DISCORD_TOKEN}`);
 
-    const commands: object[] = this.getJSON(this.client.commands);
-    const setCommands: any = await rest.put(
-      Routes.applicationGuildCommands(`${APPLICATION_ID}`, `${GUILD_ID}`),
+    const enabledCommands: object[] = this.getJSON(
+      this.client.commands.filter((command) => command.enable)
+    );
+
+    const setEnabledCommands: any = await rest.put(
+      Routes.applicationCommands(`${APPLICATION_ID}`),
       {
-        body: commands,
+        body: enabledCommands,
       }
     );
 
     console.log(
-      `Successfully loaded ${setCommands.length} application commands.`.red
+      `Successfully loaded ${setEnabledCommands.length} application commands.`
+        .red
+    );
+
+    const developmentCommands: object[] = this.getJSON(
+      this.client.commands.filter((command) => !command.enable)
+    );
+
+    const setDevelopmentCommands: any = await rest.put(
+      Routes.applicationGuildCommands(`${APPLICATION_ID}`, `${GUILD_ID}`),
+      {
+        body: developmentCommands,
+      }
+    );
+
+    console.log(
+      `Successfully loaded ${setDevelopmentCommands.length} development commands.`
+        .yellow
     );
 
     console.log(`Logged as ${this.client.user?.tag}`.green);
@@ -50,6 +70,7 @@ export default class Ready extends Event {
         options: command.options,
         default_member_permissions:
           command.default_member_permissions.toString(),
+        enable: command.enable,
       });
     });
 

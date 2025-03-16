@@ -30,6 +30,7 @@ export default class Warn extends Command {
           required: false,
         },
       ],
+      enable: true,
     });
   }
 

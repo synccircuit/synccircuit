@@ -34,6 +34,7 @@ export default class SetupJoinToCreate extends Command {
           required: false,
         },
       ],
+      enable: true,
     });
   }
 

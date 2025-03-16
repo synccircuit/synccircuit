@@ -25,6 +25,7 @@ export default class UnMute extends Command {
           required: true,
         },
       ],
+      enable: true,
     });
   }
 

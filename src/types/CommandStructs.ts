@@ -7,6 +7,7 @@ export type CommandStructure = {
   description: string;
   options: object;
   default_member_permissions: bigint;
+  enable: boolean;
 
   execute(interaction: ChatInputCommandInteraction): void;
 };
@@ -16,4 +17,5 @@ export type CommandManager = {
   description: string;
   options: object;
   default_member_permissions: bigint;
+  enable: boolean;
 };

@@ -24,6 +24,7 @@ export default class SetupMute extends Command {
           required: true,
         },
       ],
+      enable: true,
     });
   }
 

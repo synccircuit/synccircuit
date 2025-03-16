@@ -52,6 +52,7 @@ export default class Warnings extends Command {
           ],
         },
       ],
+      enable: true,
     });
   }
 
