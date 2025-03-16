@@ -1,13 +1,9 @@
 import { Schema, model } from "mongoose";
-import { v4 as uuid } from "uuid";
 
 const warningSchema = new Schema(
   {
     GuildID: String,
-    ID: {
-      type: String,
-      default: () => uuid(),
-    },
+    ID: Number,
     UserID: String,
     Reason: String,
     ModeratorID: String,
