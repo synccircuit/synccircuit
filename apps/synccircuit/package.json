@@ -7,7 +7,7 @@
     "build:clean": "del-cli dist/*",
     "build:check": "tsc --noEmit",
     "build:compile": "tsc --build && tsc-alias -p tsconfig.json",
-    "build": "yarn build:clean && yarn build:check && yarn build:compile",
+    "build": "yarn workspace @synccircuit/framework run build && yarn build:clean && yarn build:check && yarn build:compile",
     "lint": "prettier --check . && oxlint",
     "format": "prettier --write .",
     "start": "yarn build && node --enable-source-maps dist/index.js"
