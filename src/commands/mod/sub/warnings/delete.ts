@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, User } from "discord.js";
+import { ChatInputCommandInteraction, MessageFlags, User } from "discord.js";
 import IntegratedClient from "../../../../classes/IntegratedClient";
 import SubCommand from "../../../../classes/SubCommand";
 import warningSchema from "../../../../mongo/schemas/warningSchema";
@@ -30,10 +30,12 @@ export default class Delete extends SubCommand {
     if (warningCount === 0) {
       await interaction.reply({
         content: `\`❌\` ${target} has no warnings.`,
+        flags: MessageFlags.Ephemeral,
       });
     } else if (!warning) {
       await interaction.reply({
         content: "`❌` No warning found with the specified ID.",
+        flags: MessageFlags.Ephemeral,
       });
       return;
     } else {
@@ -45,7 +47,7 @@ export default class Delete extends SubCommand {
 
       await interaction.reply({
         content: `\`✅\` Warning deleted for ${target} (\`${target.id}\`).`,
-        // flags: MessageFlags.Ephemeral,
+        flags: MessageFlags.Ephemeral,
       });
     }
   }
