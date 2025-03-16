@@ -3,6 +3,7 @@ import IntegratedClient from "../../classes/IntegratedClient";
 import Event from "../../classes/Event";
 import "colors";
 import Command from "../../classes/Command";
+import { APPLICATION_ID, DISCORD_TOKEN, GUILD_ID } from "../../config/config";
 
 export default class Ready extends Event {
   constructor(client: IntegratedClient) {
@@ -13,13 +14,11 @@ export default class Ready extends Event {
   }
 
   override async execute() {
-    const clientId = process.env.APPLICATION_ID as string;
-    const guildId = process.env.GUILD_ID as string;
-    const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);
+    const rest = new REST().setToken(`${DISCORD_TOKEN}`);
 
     const commands: object[] = this.getJSON(this.client.commands);
     const setCommands: any = await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
+      Routes.applicationGuildCommands(`${APPLICATION_ID}`, `${GUILD_ID}`),
       {
         body: commands,
       }

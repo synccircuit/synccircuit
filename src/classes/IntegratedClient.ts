@@ -5,6 +5,7 @@ import Command from "./Command.js";
 import "colors";
 import { connect } from "mongoose";
 import SubCommand from "./SubCommand.js";
+import { DISCORD_TOKEN, MONGODB_URL } from "../config/config.js";
 
 export default class IntegratedClient extends Client implements Bot {
   importHandlers: Handlers;
@@ -31,11 +32,11 @@ export default class IntegratedClient extends Client implements Bot {
     console.log(`Starting the client in production mode.`.cyan);
     this.createHandlers();
 
-    connect(`${process.env.MONGODB_URL}`).then(() => {
+    connect(`${MONGODB_URL}`).then(() => {
       console.log("Connected to MongoDB database.".blue);
     });
 
-    this.login(process.env.DISCORD_TOKEN).catch((err) => console.error(err));
+    this.login(DISCORD_TOKEN).catch((err) => console.error(err));
   }
 
   createHandlers(): void {
