@@ -34,16 +34,7 @@
     "useDefineForClassFields": true,
 
     // Completeness
-    "skipLibCheck": true,
-
-    // Extends
-    "module": "CommonJS",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "outDir": "dist",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["apps/synccircuit/src/**/*.ts"]
 }
