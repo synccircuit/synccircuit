@@ -15,7 +15,7 @@ export default class Handlers implements Handler {
 
   async createEventHandler() {
     const files = (await glob(`dist/events/**/*.js`)).map((filePath: string) =>
-      path.resolve(filePath)
+      path.resolve(filePath),
     );
 
     files.map(async (file: string) => {
@@ -39,12 +39,12 @@ export default class Handlers implements Handler {
 
   async createCommandHandler() {
     const files = (await glob(`dist/commands/**/*.js`)).map(
-      (filePath: string) => path.resolve(filePath)
+      (filePath: string) => path.resolve(filePath),
     );
 
     files.map(async (file: string) => {
       const command: Command | SubCommand = new (await import(file)).default(
-        this.client
+        this.client,
       );
 
       if (!command.name)

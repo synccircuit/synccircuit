@@ -31,7 +31,7 @@ export default class ChannelInfo extends Command {
     const channel = interaction.options.getChannel("channel") as Channel;
 
     const channelFetched = (await interaction.guild?.channels.fetch(
-      channel.id
+      channel.id,
     )) as GuildChannel;
 
     const embed = new EmbedBuilder()

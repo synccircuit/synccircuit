@@ -29,7 +29,7 @@ export default class VoiceStateUpdate extends Event {
           await createChannel.delete();
           this.client.removeListener(
             Events.VoiceStateUpdate,
-            voiceStateUpdateListener
+            voiceStateUpdateListener,
           );
         }
       };

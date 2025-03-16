@@ -36,7 +36,7 @@ export default class SetupMute extends Command {
         GuildID: interaction.guild?.id,
       },
       { RoleID: role.id },
-      { new: true, upsert: true }
+      { new: true, upsert: true },
     );
 
     await interaction.reply({

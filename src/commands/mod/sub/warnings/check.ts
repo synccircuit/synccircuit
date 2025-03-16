@@ -45,7 +45,7 @@ export default class Check extends SubCommand {
       return;
     } else {
       const moderator = await interaction.guild?.members.fetch(
-        warning.ModeratorID as string
+        warning.ModeratorID as string,
       );
 
       const embed = new EmbedBuilder()
@@ -66,7 +66,7 @@ export default class Check extends SubCommand {
           {
             name: "Timestamp",
             value: `${warning.Timestamp}`,
-          }
+          },
         )
         .setTimestamp();
 

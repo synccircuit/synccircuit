@@ -57,13 +57,13 @@ export default class Warn extends Command {
       }
 
       const member = interaction.guild?.members.cache.get(
-        target.id
+        target.id,
       ) as GuildMember;
 
       if (
         member &&
         member.roles.highest.comparePositionTo(
-          (interaction.member as GuildMember).roles.highest
+          (interaction.member as GuildMember).roles.highest,
         ) >= 0
       ) {
         await interaction.reply({

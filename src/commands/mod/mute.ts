@@ -32,7 +32,7 @@ export default class Mute extends Command {
   override async execute(interaction: ChatInputCommandInteraction) {
     const target = interaction.options.getUser("target") as User;
     const member = (await interaction.guild?.members.fetch(
-      target.id
+      target.id,
     )) as GuildMember;
 
     const data = await muteConfig.findOne({
@@ -45,7 +45,7 @@ export default class Mute extends Command {
           new EmbedBuilder()
             .setColor("Yellow")
             .setDescription(
-              `\`⚠️\` It seems that you have not configured the module.`
+              `\`⚠️\` It seems that you have not configured the module.`,
             ),
         ],
         flags: MessageFlags.Ephemeral,
@@ -61,7 +61,7 @@ export default class Mute extends Command {
         embeds: [
           new EmbedBuilder()
             .setDescription(
-              `${target} \`${target.id}\` was successfully muted.`
+              `${target} \`${target.id}\` was successfully muted.`,
             )
             .setColor("Blurple"),
         ],

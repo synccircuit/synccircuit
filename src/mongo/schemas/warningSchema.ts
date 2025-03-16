@@ -9,7 +9,7 @@ const warningSchema = new Schema(
     ModeratorID: String,
     Timestamp: { type: Date, default: Date.now },
   },
-  { strict: true }
+  { strict: true },
 );
 
 export default model("warningSchema", warningSchema);

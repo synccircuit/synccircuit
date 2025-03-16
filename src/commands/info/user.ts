@@ -32,7 +32,7 @@ export default class UserInfo extends Command {
       (interaction.options.getUser("target") as User) || interaction.user;
 
     const member = (await interaction.guild?.members.fetch(
-      target.id
+      target.id,
     )) as GuildMember;
 
     const badges = member.user.flags?.toArray();
@@ -76,7 +76,7 @@ export default class UserInfo extends Command {
         {
           name: "Member info",
           value: `- Joined: <t:${Math.floor((member?.joinedTimestamp as number) / 1000)}:f> (<t:${Math.floor((member?.joinedTimestamp as number) / 1000)}:R>)\n- Roles (${roleCount}):\n_${roleList}_`,
-        }
+        },
       )
       .setColor("Blurple");
 
