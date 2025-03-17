@@ -19,8 +19,7 @@
     "node": ">=18.0.0"
   },
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/*"
   ],
   "packageManager": "yarn@1.22.22"
 }
