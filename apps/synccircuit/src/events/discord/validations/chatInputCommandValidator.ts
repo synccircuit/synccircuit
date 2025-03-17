@@ -11,7 +11,7 @@ import {
 import Event from "@/classes/Event";
 import Command from "@/classes/Command";
 import { messageConfig } from "@/messageConfig";
-import { LogColors, LogEmojis } from "@/consts/loggingSymbols";
+import { LogColors } from "@/consts/loggingSymbols";
 
 export default class ChatInputCommandValidator extends Event {
   constructor(client: IntegratedClient) {
@@ -29,9 +29,7 @@ export default class ChatInputCommandValidator extends Event {
     if (!command) return;
 
     const createEmbed = (color: ColorResolvable, description: string) =>
-      new EmbedBuilder()
-        .setColor(color)
-        .setDescription(`\`${LogEmojis.Error}\` ${description}`);
+      new EmbedBuilder().setColor(color).setDescription(description);
 
     const userPermissions = command.default_member_permissions
       ? new PermissionsBitField(command.default_member_permissions).toArray()
