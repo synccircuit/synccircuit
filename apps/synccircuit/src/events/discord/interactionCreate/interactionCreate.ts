@@ -1,12 +1,14 @@
 import {
   ButtonInteraction,
   ChatInputCommandInteraction,
+  ContextMenuCommandInteraction,
   Events,
 } from "discord.js";
 import Event from "@/classes/Event";
 import Command from "@/classes/Command";
 import IntegratedClient from "@/classes/IntegratedClient";
 import Button from "@/classes/Button";
+import ContextMenu from "@/classes/ContextMenu";
 
 export default class InteractionCreate extends Event {
   constructor(client: IntegratedClient) {
@@ -17,7 +19,10 @@ export default class InteractionCreate extends Event {
   }
 
   override async execute(
-    interaction: ChatInputCommandInteraction | ButtonInteraction
+    interaction:
+      | ChatInputCommandInteraction
+      | ButtonInteraction
+      | ContextMenuCommandInteraction
   ) {
     if (interaction.isChatInputCommand()) {
       const command: Command = this.client.commands.get(
@@ -56,6 +61,33 @@ export default class InteractionCreate extends Event {
 
       try {
         return button.execute(interaction);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (interaction.isContextMenuCommand()) {
+      const contextMenu: ContextMenu = this.client.contextMenus.get(
+        interaction.commandName
+      )!;
+
+      //@ts-ignore
+      if (!contextMenu)
+        return (
+          interaction.reply({
+            content: "outdated context menu",
+            ephemeral: true,
+          }),
+          this.client.contextMenus.delete(interaction.commandName)
+        );
+
+      try {
+        const context = `${interaction.commandName}${interaction.commandType}`;
+
+        return (
+          this.client.contextMenus.get(context)?.execute(interaction) ||
+          contextMenu.execute(interaction)
+        );
       } catch (error) {
         console.log(error);
       }

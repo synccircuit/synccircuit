@@ -7,6 +7,7 @@ import Command from "./Command.js";
 import type { ClientEvents } from "discord.js";
 import SubCommand from "./SubCommand.js";
 import Button from "./Button.js";
+import ContextMenu from "./ContextMenu.js";
 
 export default class Handlers implements Handler {
   client: IntegratedClient;
@@ -78,6 +79,31 @@ export default class Handlers implements Handler {
         );
 
       this.client.buttons.set(button.custom_id, button as Button);
+
+      return delete require.cache[require.resolve(file)];
+    });
+  }
+
+  async createContextMenuCommandHandler() {
+    const files = (await glob(`dist/contextMenus/**/*.js`)).map(
+      (filePath: string) => path.resolve(filePath)
+    );
+
+    files.map(async (file: string) => {
+      const contextMenu: ContextMenu = new (await import(file)).default(
+        this.client
+      );
+
+      if (!contextMenu.name)
+        return (
+          delete require.cache[require.resolve(file)] &&
+          console.log(`${file.split("/").pop()} does not have a valid name.`)
+        );
+
+      this.client.contextMenus.set(
+        contextMenu.name,
+        contextMenu as ContextMenu
+      );
 
       return delete require.cache[require.resolve(file)];
     });

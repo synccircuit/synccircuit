@@ -7,12 +7,14 @@ import { connect } from "mongoose";
 import SubCommand from "./SubCommand.js";
 import { DISCORD_TOKEN, MONGODB_URL } from "@/config/config.js";
 import Button from "./Button.js";
+import ContextMenu from "./ContextMenu.js";
 
 export default class IntegratedClient extends Client implements Bot {
   importHandlers: Handlers;
   commands: Collection<string, Command>;
   subCommands: Collection<string, SubCommand>;
   buttons: Collection<string, Button>;
+  contextMenus: Collection<string, ContextMenu>;
 
   constructor() {
     super({
@@ -29,6 +31,7 @@ export default class IntegratedClient extends Client implements Bot {
     this.commands = new Collection();
     this.subCommands = new Collection();
     this.buttons = new Collection();
+    this.contextMenus = new Collection();
   }
 
   start(): void {
@@ -46,5 +49,6 @@ export default class IntegratedClient extends Client implements Bot {
     this.importHandlers.createEventHandler();
     this.importHandlers.createCommandHandler();
     this.importHandlers.createButtonHandler();
+    this.importHandlers.createContextMenuCommandHandler();
   }
 }

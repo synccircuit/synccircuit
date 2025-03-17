@@ -4,6 +4,7 @@ import Event from "@/classes/Event";
 import "colors";
 import Command from "@/classes/Command";
 import { APPLICATION_ID, DISCORD_TOKEN, GUILD_ID } from "@/config/config";
+import ContextMenu from "@/classes/ContextMenu";
 
 export default class Ready extends Event {
   constructor(client: IntegratedClient) {
@@ -17,7 +18,8 @@ export default class Ready extends Event {
     const rest = new REST().setToken(`${DISCORD_TOKEN}`);
 
     const enabledCommands: object[] = this.getJSON(
-      this.client.commands.filter((command) => command.enable)
+      this.client.commands.filter((command) => command.enable),
+      this.client.contextMenus.filter((command) => command.enable)
     );
 
     const setEnabledCommands: any = await rest.put(
@@ -33,7 +35,8 @@ export default class Ready extends Event {
     );
 
     const developmentCommands: object[] = this.getJSON(
-      this.client.commands.filter((command) => !command.enable)
+      this.client.commands.filter((command) => !command.enable),
+      this.client.contextMenus.filter((command) => !command.enable)
     );
 
     const setDevelopmentCommands: any = await rest.put(
@@ -60,7 +63,10 @@ export default class Ready extends Event {
     });
   }
 
-  private getJSON(commands: Collection<string, Command>): object[] {
+  private getJSON(
+    commands: Collection<string, Command>,
+    contextMenus: Collection<string, ContextMenu>
+  ): object[] {
     const data: object[] = [];
 
     commands.forEach((command) => {
@@ -68,6 +74,16 @@ export default class Ready extends Event {
         name: command.name,
         description: command.description,
         options: command.options,
+        default_member_permissions:
+          command.default_member_permissions.toString(),
+        enable: command.enable,
+      });
+    });
+
+    contextMenus.forEach((command) => {
+      data.push({
+        name: command.name,
+        type: command.type,
         default_member_permissions:
           command.default_member_permissions.toString(),
         enable: command.enable,
