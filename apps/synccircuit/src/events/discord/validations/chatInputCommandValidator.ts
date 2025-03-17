@@ -47,6 +47,7 @@ export default class ChatInputCommandValidator extends Event {
           embeds: [rEmbed],
           flags: MessageFlags.Ephemeral,
         });
+        return;
       }
     }
 
@@ -58,6 +59,7 @@ export default class ChatInputCommandValidator extends Event {
           embeds: [rEmbed],
           flags: MessageFlags.Ephemeral,
         });
+        return;
       }
     }
   }
