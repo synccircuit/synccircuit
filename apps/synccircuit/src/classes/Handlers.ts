@@ -6,6 +6,7 @@ import Event from "./Event.js";
 import Command from "./Command.js";
 import type { ClientEvents } from "discord.js";
 import SubCommand from "./SubCommand.js";
+import Button from "./Button.js";
 
 export default class Handlers implements Handler {
   client: IntegratedClient;
@@ -57,6 +58,26 @@ export default class Handlers implements Handler {
         return this.client.subCommands.set(command.name, command);
 
       this.client.commands.set(command.name, command as Command);
+
+      return delete require.cache[require.resolve(file)];
+    });
+  }
+
+  async createButtonHandler() {
+    const files = (await glob(`dist/buttons/**/*.js`)).map((filePath: string) =>
+      path.resolve(filePath)
+    );
+
+    files.map(async (file: string) => {
+      const button: Button = new (await import(file)).default(this.client);
+
+      if (!button.custom_id)
+        return (
+          delete require.cache[require.resolve(file)] &&
+          console.log(`${file.split("/").pop()} does not have a valid id.`)
+        );
+
+      this.client.buttons.set(button.custom_id, button as Button);
 
       return delete require.cache[require.resolve(file)];
     });
