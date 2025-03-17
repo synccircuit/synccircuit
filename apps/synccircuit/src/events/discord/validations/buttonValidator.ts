@@ -11,7 +11,7 @@ import Button from "@/classes/Button";
 import { LogColors } from "@/consts/loggingSymbols";
 import { messageConfig } from "@/messageConfig";
 
-export default class ChatInputCommandValidator extends Event {
+export default class ButtonValidator extends Event {
   constructor(client: IntegratedClient) {
     super(client, {
       name: Events.InteractionCreate,
