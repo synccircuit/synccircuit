@@ -5,5 +5,5 @@ export const messageConfig = {
   testMode: "This is in development and cannot be executed in this server.",
 
   userNoPerms: "You do not have enough permissions to execute this.",
-  botNoPerms: "I do nnot have enough permissions to execute this.",
+  botNoPerms: "I do not have enough permissions to execute this.",
 };
