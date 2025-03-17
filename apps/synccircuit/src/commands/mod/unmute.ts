@@ -16,7 +16,8 @@ export default class UnMute extends Command {
     super(client, {
       name: "unmute",
       description: "Unmutes a user from the server.",
-      default_member_permissions: PermissionFlagsBits.ModerateMembers,
+      userPermissions: PermissionFlagsBits.ModerateMembers,
+      botPermissions: PermissionFlagsBits.ModerateMembers,
       options: [
         {
           name: "target",

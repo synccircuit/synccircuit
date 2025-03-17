@@ -15,7 +15,8 @@ export default class SetupMute extends Command {
     super(client, {
       name: "setup-mute",
       description: "Configures the mute system.",
-      default_member_permissions: PermissionFlagsBits.ManageGuild,
+      userPermissions: PermissionFlagsBits.ManageGuild,
+      botPermissions: PermissionFlagsBits.ManageGuild,
       options: [
         {
           name: "role",

@@ -16,7 +16,8 @@ export default class SetupJoinToCreate extends Command {
     super(client, {
       name: "setup-jointocreate",
       description: "Configures the join to create system.",
-      default_member_permissions: PermissionFlagsBits.ManageGuild,
+      userPermissions: PermissionFlagsBits.ManageGuild,
+      botPermissions: PermissionFlagsBits.ManageGuild,
       options: [
         {
           name: "channel",

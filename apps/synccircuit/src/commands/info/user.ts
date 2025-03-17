@@ -15,7 +15,8 @@ export default class UserInfo extends Command {
     super(client, {
       name: "userinfo",
       description: "User information by tag.",
-      default_member_permissions: PermissionFlagsBits.UseApplicationCommands,
+      userPermissions: PermissionFlagsBits.UseApplicationCommands,
+      botPermissions: PermissionFlagsBits.UseApplicationCommands,
       options: [
         {
           name: "target",

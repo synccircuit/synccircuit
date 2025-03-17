@@ -11,7 +11,8 @@ export default class Warnings extends Command {
     super(client, {
       name: "warnings",
       description: "Warn command actions.",
-      default_member_permissions: PermissionFlagsBits.ModerateMembers,
+      userPermissions: PermissionFlagsBits.ModerateMembers,
+      botPermissions: PermissionFlagsBits.ModerateMembers,
       options: [
         {
           name: "check",

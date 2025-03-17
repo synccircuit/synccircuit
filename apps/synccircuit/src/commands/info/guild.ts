@@ -13,7 +13,8 @@ export default class GuildInfo extends Command {
     super(client, {
       name: "guildinfo",
       description: "Server information.",
-      default_member_permissions: PermissionFlagsBits.UseApplicationCommands,
+      userPermissions: PermissionFlagsBits.UseApplicationCommands,
+      botPermissions: PermissionFlagsBits.UseApplicationCommands,
       options: [],
       enable: true,
     });

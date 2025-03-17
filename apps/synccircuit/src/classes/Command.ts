@@ -11,7 +11,8 @@ export default class Command implements CommandStructure {
   name: string;
   description: string;
   options: object;
-  default_member_permissions: bigint;
+  default_member_permissions: bigint | bigint[];
+  default_bot_permissions: bigint | bigint[];
   enable: boolean;
 
   constructor(client: IntegratedClient, on: CommandManager) {
@@ -19,7 +20,8 @@ export default class Command implements CommandStructure {
     this.name = on.name;
     this.description = on.description;
     this.options = on.options;
-    this.default_member_permissions = on.default_member_permissions;
+    this.default_member_permissions = on.userPermissions;
+    this.default_bot_permissions = on.botPermissions;
     this.enable = on.enable;
   }
 

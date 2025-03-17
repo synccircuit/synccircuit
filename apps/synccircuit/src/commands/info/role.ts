@@ -14,7 +14,8 @@ export default class RoleInfo extends Command {
     super(client, {
       name: "roleinfo",
       description: "Role information.",
-      default_member_permissions: PermissionFlagsBits.UseApplicationCommands,
+      userPermissions: PermissionFlagsBits.UseApplicationCommands,
+      botPermissions: PermissionFlagsBits.UseApplicationCommands,
       options: [
         {
           name: "role",

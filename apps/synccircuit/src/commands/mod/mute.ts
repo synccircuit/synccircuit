@@ -16,7 +16,8 @@ export default class Mute extends Command {
     super(client, {
       name: "mute",
       description: "Mutes a user from the server.",
-      default_member_permissions: PermissionFlagsBits.ModerateMembers,
+      userPermissions: PermissionFlagsBits.ModerateMembers,
+      botPermissions: PermissionFlagsBits.ModerateMembers,
       options: [
         {
           name: "target",

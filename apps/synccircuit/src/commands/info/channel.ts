@@ -15,7 +15,8 @@ export default class ChannelInfo extends Command {
     super(client, {
       name: "channelinfo",
       description: "Channel information.",
-      default_member_permissions: PermissionFlagsBits.UseApplicationCommands,
+      userPermissions: PermissionFlagsBits.UseApplicationCommands,
+      botPermissions: PermissionFlagsBits.UseApplicationCommands,
       options: [
         {
           name: "channel",
